@@ -1,0 +1,66 @@
+// picks a random element from a list of elements.
+
+package random_;
+
+import java.util.*;
+
+public class Randomizer {
+	
+	static Scanner scanner = new Scanner(System.in);
+    static ArrayList<String> strings = new ArrayList<String>();
+    static String randomString = "";
+    static Random rand = new Random();
+	
+	public static void main(String[] args) {
+		giveList();
+	}
+	
+	public static void giveList() {
+		
+		// Prompt the user to enter a list of strings
+		System.out.print("Enter a list (separated by commas): ");
+        String input = scanner.nextLine();
+        
+        //String[] inputStrings = input.split(",") is a statement that splits the input string input into an array of substrings using the comma , as a delimiter. 
+        //The resulting substrings are stored in the inputStrings array.
+        String[] inputStrings = input.split(",");
+        
+        //The for loop for (String s : inputStrings) iterates over each element of the inputStrings array and assigns it to the variable s.
+        // Add each string to the ArrayList
+        for (String s : inputStrings) {
+        	
+        	//strings.add(s.trim()) is a statement that adds the trimmed version of the string s to the strings ArrayList. 
+        	//The trim() method removes any leading or trailing whitespace from the string s before adding it to the list.
+            strings.add(s.trim());
+        }
+        System.out.println();
+        
+        // Pick a random string from the ArrayList and print it
+        randomString = strings.get(rand.nextInt(strings.size()));
+        strings.remove(randomString); // removes the random pick string from the og list
+        System.out.println("Random pick: " + randomString);
+        System.out.println("Remaining list: " + strings);
+        System.out.println();
+        
+        while (true) {
+        	if (strings.isEmpty()) {
+        		System.out.println("All members of the list have been picked!");
+        		break;
+        	}
+        	System.out.println("Want a Random pick again?");
+        	System.out.print("(Press any key to continue and \"Q/q\" to quit): "); 
+        	String response = scanner.nextLine();
+        	if (!response.equalsIgnoreCase("q")) {
+        		System.out.println();
+        		randomString = strings.get(rand.nextInt(strings.size()));
+        		strings.remove(randomString);
+                System.out.println("Random pick: " + randomString);
+                System.out.println("Remaining list: " + strings);
+        	} else {
+        		break;
+        	}
+        }
+        System.out.println();
+        System.out.println("Thank you for using the program! \nIf you want to try again, please run the program again");
+	}
+}

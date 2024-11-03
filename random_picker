@@ -1,5 +1,3 @@
-// picks a random element from a list of elements.
-
 package random_;
 
 import java.util.*;

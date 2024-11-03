@@ -1,0 +1,41 @@
+package random_;
+
+import java.util.*;
+
+public class Scrambler {
+	static Scanner scanner = new Scanner(System.in);
+    static ArrayList<String> strings = new ArrayList<String>();
+    static String randomString = "";
+    static Random rand = new Random();
+	
+	public static void main(String[] args) {
+		giveList();
+	}
+	
+	public static void giveList() {
+		System.out.print("Enter a list of strings (separated by commas): ");
+        String input = scanner.nextLine();
+        String[] inputStrings = input.split(",");
+        for (String s : inputStrings) {
+        	strings.add(s.trim());
+        }
+        System.out.println();
+        Collections.shuffle(strings);
+        System.out.println("Randomized list: " + strings); 
+        
+        while (true) {
+        	System.out.println("Do you want to shuffle again? (y/n): ");
+        	String response = scanner.nextLine();
+        	if (response.equalsIgnoreCase("y")) {
+        		System.out.println();
+        		Collections.shuffle(strings);
+                System.out.println("Randomized list: " + strings);
+        	} else {
+        		break;
+        	}
+        }
+        System.out.println("Thank you for using the program! /nIf you want to try again, please run the program again");
+	}
+		
+
+}
